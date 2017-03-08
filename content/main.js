@@ -10,7 +10,3 @@ ReactDOM.render(
 	</Mock>,
 	document.getElementById('main')
 );
-
-var firebase = require('firebase');
-var firebaseui = require('firebaseui');
-

@@ -4,3 +4,6 @@ window.Reflux = require("reflux");
 window.$ = require("jquery");
 window.Mock = require("mockjs");
 window._ = require('lodash');
+
+window.firebase = require('firebase');
+window.firebaseui = require('firebaseui');

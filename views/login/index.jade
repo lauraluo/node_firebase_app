@@ -1,7 +1,39 @@
 
 extends ../layout
 block importHead
+    script(src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js")
     link(rel="stylesheet", href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css")
+    
 block content
     h1 Login
     div#main
+    div#firebaseui-auth-container
+
+    script.
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyB7RnKijwmJvp_MkfkG_sluT15Mo1siHYY",
+                authDomain: "nodeproject-2b7c5.firebaseapp.com",
+                databaseURL: "https://nodeproject-2b7c5.firebaseio.com",
+                storageBucket: "nodeproject-2b7c5.appspot.com",
+                messagingSenderId: "3764964802"
+            };
+            firebase.initializeApp(config);
+            
+            var uiConfig = {
+                signInSuccessUrl: 'http://localhost:3002/user',
+                signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID
+                ],
+                tosUrl: 'http://localhost:3002/user'
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
